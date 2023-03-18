@@ -5,19 +5,19 @@ class StudentRepository {
   final CollectionReference ctseCollection =
       FirebaseFirestore.instance.collection('ctse');
 
-  Future addStudent(String stid, String grade, String subject, String mark) async {
+  Future addStudent( String name, String subject, String mark) async {
     return await ctseCollection.add({
-      "stid":  stid,
-      "grade": grade,
+     
+      "name": name,
       "subject":subject,
       "mark":mark,
     });
   }
 
-  Future editStudent(id,String stid,String grade, String subject, String mark) async {
+  Future editStudent(id,String name, String subject, String mark) async {
     await ctseCollection.doc(id).update({
-       "stid":  stid,
-       "grade": grade,
+       "id":  id,
+       "name": name,
        "subject": subject,
        "mark":mark,
     });
@@ -30,10 +30,9 @@ class StudentRepository {
   List<Student> StudentsList(QuerySnapshot snapshot) {
     return snapshot.docs.map((e) {
       return Student(
-        stid: e.get("stid"),
         subject: e.get("subject"),
         mark: e.get("mark"),
-        grade: e.get("grade"),
+        name: e.get("name"),
         id: e.id,
       );
     }).toList();

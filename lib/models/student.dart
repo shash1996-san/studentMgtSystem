@@ -1,8 +1,8 @@
 class Student {
-  String stid;
-  String grade;
+  String id;
+  String name;
   String subject;
   String mark;
 
-  Student({required this.stid, required this.grade, required this.subject, required this.mark, required String id});
+  Student({required this.id, required this.name, required this.subject, required this.mark });
 }
