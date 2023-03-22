@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Todo App"),
+        title: const Text("Student Management App"),
         actions: [
           IconButton(
             onPressed: () {

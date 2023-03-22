@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ndialog/ndialog.dart';
-import 'package:flutter_application_1/screens/login.dart';
+import 'package:flutter_application_1/screens/mainHome.dart';
 import 'package:flutter_application_1/screens/home.dart';
 import 'package:flutter_application_1/screens/signUp.dart';
 
@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                         progressDialog.dismiss();
                         Navigator.of(context).pushReplacement(
                             MaterialPageRoute(builder: (context) {
-                          return const Home();
+                          return  MainHomeScreen();
                         }));
                       }
                     } on FirebaseAuthException catch (e) {
