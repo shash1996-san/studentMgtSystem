@@ -6,6 +6,7 @@ import 'package:flutter_application_1/screens/login.dart';
 import 'package:flutter_application_1/screens/home.dart';
 import 'package:flutter_application_1/screens/signUp.dart';
 
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -13,9 +14,28 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    );
+    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,95 +43,98 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         title: const Text('Login'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                hintText: 'Email',
+      body: FadeTransition(
+        opacity: _animation,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(
+                  hintText: 'Email',
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            TextField(
-              controller: passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(
-                hintText: 'Password',
+              const SizedBox(
+                height: 10,
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-                onPressed: () async {
-                  var email = emailController.text.trim();
-                  var password = passwordController.text.trim();
-                  if (email.isEmpty || password.isEmpty) {
-                    // show error toast
-                    Fluttertoast.showToast(msg: 'Please fill all fields');
-                    return;
-                  }
+              TextField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  hintText: 'Password',
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                  onPressed: () async {
+                    var email = emailController.text.trim();
+                    var password = passwordController.text.trim();
+                    if (email.isEmpty || password.isEmpty) {
+                      // show error toast
+                      Fluttertoast.showToast(msg: 'Please fill all fields');
+                      return;
+                    }
 
-                  // request to firebase auth
+                    // request to firebase auth
 
-                  ProgressDialog progressDialog = ProgressDialog(
-                    context,
-                    title: const Text('Logging In'),
-                    message: const Text('Please wait'),
-                  );
+                    ProgressDialog progressDialog = ProgressDialog(
+                      context,
+                      title: const Text('Logging In'),
+                      message: const Text('Please wait'),
+                    );
 
-                  progressDialog.show();
+                    progressDialog.show();
 
-                  try {
-                    FirebaseAuth auth = FirebaseAuth.instance;
+                    try {
+                      FirebaseAuth auth = FirebaseAuth.instance;
 
-                    UserCredential userCredential =
-                        await auth.signInWithEmailAndPassword(
-                            email: email, password: password);
+                      UserCredential userCredential =
+                          await auth.signInWithEmailAndPassword(
+                              email: email, password: password);
 
-                    if (userCredential.user != null) {
+                      if (userCredential.user != null) {
+                        progressDialog.dismiss();
+                        Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) {
+                          return const Home();
+                        }));
+                      }
+                    } on FirebaseAuthException catch (e) {
                       progressDialog.dismiss();
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) {
-                        return const Home();
-                      }));
-                    }
-                  } on FirebaseAuthException catch (e) {
-                    progressDialog.dismiss();
 
-                    if (e.code == 'user-not-found') {
-                      Fluttertoast.showToast(msg: 'User not found');
-                    } else if (e.code == 'wrong-password') {
-                      Fluttertoast.showToast(msg: 'Wrong password');
+                      if (e.code == 'user-not-found') {
+                        Fluttertoast.showToast(msg: 'User not found');
+                      } else if (e.code == 'wrong-password') {
+                        Fluttertoast.showToast(msg: 'Wrong password');
+                      }
+                    } catch (e) {
+                      Fluttertoast.showToast(msg: 'Something went wrong');
+                      progressDialog.dismiss();
                     }
-                  } catch (e) {
-                    Fluttertoast.showToast(msg: 'Something went wrong');
-                    progressDialog.dismiss();
-                  }
-                },
-                child: const Text('Login')),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('Not Registered Yet'),
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) {
-                        return const SignUpScreen();
-                      }));
-                    },
-                    child: const Text('Register Now')),
-              ],
-            )
-          ],
+                  },
+                  child: const Text('Login')),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Not Registered Yet'),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
+                          return const SignUpScreen();
+                        }));
+                      },
+                      child: const Text('Register Now')),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
