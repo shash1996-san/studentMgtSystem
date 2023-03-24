@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/home.dart';
+import 'package:flutter_application_1/screens/moduleHome.dart';
 
 class MainHomeScreen extends StatefulWidget {
   @override
@@ -53,9 +54,9 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()));
+                        MaterialPageRoute(builder: (context) => ModuleHome()));
                   },
-                  child: Text('Component 2'),
+                  child: Text('Course Modules'),
                 ),
                 ElevatedButton(
                   onPressed: () {
