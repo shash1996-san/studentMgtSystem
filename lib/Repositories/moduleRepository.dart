@@ -5,21 +5,22 @@ class ModuleRepository {
   final CollectionReference moduleCollection =
       FirebaseFirestore.instance.collection('module');
 
-  Future addModule( String moduleName, String moduleDuration, String moduleDescription) async {
+  Future addModule(String moduleName, String moduleDuration,
+      String moduleDescription) async {
     return await moduleCollection.add({
-     
       "moduleName": moduleName,
-      "moduleDuration":moduleDuration,
-      "moduleDescription":moduleDescription,
+      "moduleDuration": moduleDuration,
+      "moduleDescription": moduleDescription,
     });
   }
 
-  Future editModule(moduleId,String moduleName, String moduleDuration, String moduleDescription) async {
+  Future editModule(moduleId, String moduleName, String moduleDuration,
+      String moduleDescription) async {
     await moduleCollection.doc(moduleId).update({
-       "moduleId":  moduleId,
-       "moduleName": moduleName,
-       "moduleDuration": moduleDuration,
-       "moduleDescription":moduleDescription,
+      "moduleId": moduleId,
+      "moduleName": moduleName,
+      "moduleDuration": moduleDuration,
+      "moduleDescription": moduleDescription,
     });
   }
 
