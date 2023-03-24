@@ -72,7 +72,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(24.0),
             child: ListView(
               children: [
                 ListTile(
@@ -121,7 +121,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.all(24),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
