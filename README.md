@@ -1,4 +1,4 @@
-# flutter_application_1
+# Student Management System
 
 A new Flutter project.
 
@@ -14,3 +14,9 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## Group Members
+
+IT19953052 - Rupasinghe K.A.S.S.
+IT19953984 - Sajani Y.N.
+IT19047720 - Mendis B.N.V.
