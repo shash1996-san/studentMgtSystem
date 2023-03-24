@@ -3,7 +3,6 @@ import 'package:flutter_application_1/screens/home.dart';
 import 'package:flutter_application_1/screens/moduleHome.dart';
 import 'package:flutter_application_1/screens/teacherScreen.dart';
 
-
 class MainHomeScreen extends StatefulWidget {
   @override
   _MainHomeScreenState createState() => _MainHomeScreenState();
@@ -72,51 +71,54 @@ class _MainHomeScreenState extends State<MainHomeScreen>
               ],
             ),
           ),
-          ListView(
-            children: [
-              ListTile(
-                leading: Icon(Icons.location_on),
-                title: Text('123 Main St, Anytown USA'),
-              ),
-              ListTile(
-                leading: Icon(Icons.phone),
-                title: Text('555-555-5555'),
-              ),
-              ListTile(
-                leading: Icon(Icons.email),
-                title: Text('contact@myschool.edu'),
-              ),
-              SizedBox(height: 16),
-              Text(
-                'Get in touch with us',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView(
+              children: [
+                ListTile(
+                  leading: Icon(Icons.location_on),
+                  title: Text('123 Main St, Anytown USA'),
                 ),
-              ),
-              SizedBox(height: 16),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Name',
+                ListTile(
+                  leading: Icon(Icons.phone),
+                  title: Text('555-555-5555'),
                 ),
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Email',
+                ListTile(
+                  leading: Icon(Icons.email),
+                  title: Text('contact@myschool.edu'),
                 ),
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Message',
+                SizedBox(height: 16),
+                Text(
+                  'Get in touch with us',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                maxLines: 5,
-              ),
-              SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text('Submit'),
-              ),
-            ],
+                SizedBox(height: 16),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Name',
+                  ),
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                  ),
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Message',
+                  ),
+                  maxLines: 5,
+                ),
+                SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text('Submit'),
+                ),
+              ],
+            ),
           ),
           Padding(
             padding: EdgeInsets.all(16),
