@@ -6,7 +6,6 @@ import 'package:flutter_application_1/loader.dart';
 import 'package:flutter_application_1/screens/login.dart';
 import '../Repositories/studentRepo.dart';
 import "../models/student.dart";
-
 import 'package:flutter_application_1/models/student.dart';
 
 class Home extends StatefulWidget {
@@ -110,7 +109,7 @@ class _HomeState extends State<Home> {
               title: Row(
                 children: [
                   const Text(
-                    "Add Task",
+                    "Edit Student",
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -254,7 +253,7 @@ class _HomeState extends State<Home> {
               title: Row(
                 children: [
                   const Text(
-                    "Add Task",
+                    "Add Students",
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
