@@ -4,9 +4,10 @@ class Module {
   String moduleDuration;
   String moduleDescription;
 
-  Module(
-      {required this.moduleId,
-      required this.moduleName,
-      required this.moduleDuration,
-      required this.moduleDescription});
+  Module({
+    required this.moduleId,
+    required this.moduleName,
+    required this.moduleDuration,
+    required this.moduleDescription,
+  });
 }
