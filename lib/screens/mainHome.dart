@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/home.dart';
+
+import 'package:flutter_application_1/screens/moduleHome.dart';
+import 'package:flutter_application_1/screens/teacherScreen.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/loader.dart';
@@ -7,7 +11,10 @@ import 'package:flutter_application_1/screens/login.dart';
 import '../Repositories/contactRepo.dart';
 import "../models/contact.dart";
 
+
 class MainHomeScreen extends StatefulWidget {
+  const MainHomeScreen({Key? key}) : super(key: key);
+
   @override
   _MainHomeScreenState createState() => _MainHomeScreenState();
 }
@@ -35,6 +42,8 @@ class _MainHomeScreenState extends State<MainHomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+
+        title: const Text('Main Home'),
 
         title: Text('Home'),
             actions: [
@@ -71,9 +80,10 @@ class _MainHomeScreenState extends State<MainHomeScreen>
             icon: const Icon(Icons.logout),
           ),
         ],
+
         bottom: TabBar(
           controller: _tabController,
-          tabs: [
+          tabs: const [
             Tab(text: 'Manage'),
             Tab(text: 'Contact'),
             Tab(text: 'About'),
@@ -83,34 +93,145 @@ class _MainHomeScreenState extends State<MainHomeScreen>
       body: TabBarView(
         controller: _tabController,
         children: [
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+          Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: ListView(
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()));
-                  },
-                  child: Text('Student Home'),
+                const SizedBox(height: 16),
+                Container(
+                  width: 200,
+                  height: 190,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Home()));
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset(
+                          'lib/assets/student.png',
+                          height: 70,
+                          width: 70,
+                        ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Student Home',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()));
-                  },
-                  child: Text('Component 2'),
+                const SizedBox(height: 16),
+                Container(
+                  width: 200,
+                  height: 190,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ModuleHome()));
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset(
+                          'lib/assets/module.png',
+                          height: 70,
+                          width: 70,
+                        ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Course Modules',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()));
-                  },
-                  child: Text('Component 3'),
+                const SizedBox(height: 16),
+                Container(
+                  width: 200,
+                  height: 190,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TeacherScreen()));
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset(
+                          'lib/assets/teacher.png',
+                          height: 70,
+                          width: 70,
+                        ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Teacher Home',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
+
+          Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: ListView(
+              children: [
+                const ListTile(
+                  leading: Icon(Icons.location_on),
+                  title: Text('123 Main St, Anytown USA'),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.phone),
+                  title: Text('555-555-5555'),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.email),
+                  title: Text('contact@myschool.edu'),
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  'Get in touch with us',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Name',
+                  ),
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Email',
+                  ),
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Message',
+                  ),
+                  maxLines: 5,
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Submit'),
+                ),
+              ],
+            ),
+
           ListView(
             children: [
               ListTile(
@@ -185,12 +306,13 @@ class _MainHomeScreenState extends State<MainHomeScreen>
 ),
 
             ],
+
           ),
           Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(24),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   'Student Management System',
                   style: TextStyle(
