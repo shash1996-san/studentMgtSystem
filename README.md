@@ -17,6 +17,6 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Group Members
 
-IT19953052 - Rupasinghe K.A.S.S.
-IT19953984 - Sajani Y.N.
-IT19047720 - Mendis B.N.V.
+- IT19953052 - Rupasinghe K.A.S.S.
+- IT19953984 - Sajani Y.N.
+- IT19047720 - Mendis B.N.V.
