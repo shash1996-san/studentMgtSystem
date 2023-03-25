@@ -1,3 +1,5 @@
+
+/**References  Github,Flutter documentation,Youtube,Stackoverflow,Flutterappworld.com,Firebase.com */
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

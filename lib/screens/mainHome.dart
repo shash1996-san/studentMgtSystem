@@ -1,3 +1,14 @@
+
+/**References
+
+Github
+Flutter documentation
+Youtube
+Stackoverflow
+Flutterappworld.com
+Firebase.com
+
+ */
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
