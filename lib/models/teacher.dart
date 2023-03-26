@@ -1,4 +1,4 @@
-//teacher model
+//teacher model created
 class Teacher {
   String id;
   String name;
