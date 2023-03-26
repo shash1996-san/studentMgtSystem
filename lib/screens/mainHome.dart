@@ -1,25 +1,8 @@
 
-/**References
-
-Github
-Flutter documentation
-Youtube
-Stackoverflow
-Flutterappworld.com
-Firebase.com
-
- */
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/home.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_application_1/loader.dart';
-import 'package:flutter_application_1/screens/login.dart';
-import '../Repositories/contactRepo.dart';
 import 'package:flutter_application_1/screens/home.dart';
 import 'package:flutter_application_1/screens/moduleHome.dart';
 import 'package:flutter_application_1/screens/teacherScreen.dart';
-import "../models/contact.dart";
 
 class MainHomeScreen extends StatefulWidget {
   const MainHomeScreen({Key? key}) : super(key: key);
@@ -29,68 +12,26 @@ class MainHomeScreen extends StatefulWidget {
 }
 
 class _MainHomeScreenState extends State<MainHomeScreen>
-  with TickerProviderStateMixin {
-  TextEditingController NameController = TextEditingController();
-  TextEditingController EmailController = TextEditingController();
-  TextEditingController MessageController = TextEditingController();
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  late AnimationController _animationController;
-  late Animation<Offset> _animation;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-    _animationController = AnimationController(
-      duration: Duration(milliseconds: 500),
-      vsync: this,
-    );
-    _animation = Tween<Offset>(
-      begin: Offset(0.0, 1.0),
-      end: Offset.zero,
-    ).animate(_animationController);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
-        title: Text('Home'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (ctx) {
-                    return AlertDialog(
-                      title: const Text("Confirmation Required"),
-                      content: const Text("Are you sure to log out? "),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(ctx).pop();
-                          },
-                          child: const Text("No"),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(ctx).pop();
-                            FirebaseAuth.instance.signOut();
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(builder: (context) {
-                              return const LoginScreen();
-                            }));
-                          },
-                          child: const Text("Yes"),
-                        ),
-                      ],
-                    );
-                  });
-            },
-            icon: const Icon(Icons.logout),
-          ),
-        ],
+        title: const Text('Main Home'),
         bottom: TabBar(
           controller: _tabController,
           tabs: const [
@@ -235,52 +176,17 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton(
-                onPressed: () async {
-                  if (NameController.text.isNotEmpty) {
-                    await ContactRepository().addContact(
-                        NameController.text.trim(),
-                        EmailController.text.trim(),
-                        MessageController.text.trim());
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text('Success'),
-                          content: Text('Inquiry successfully submitted'),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            MainHomeScreen()));
-                              },
-                              child: Text('OK'),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  }
-                },
-                child: Text('Submit'),
+                  onPressed: () {},
+                  child: const Text('Submit'),
                 ),
               ],
             ),
           ),
-      Container(
-  decoration: BoxDecoration(
-    image: DecorationImage(
-      image: AssetImage('assets/images/book.jpg'),
-      fit: BoxFit.cover,
-    ),
-  ),
-  child: Padding(
-    padding: EdgeInsets.all(16),
+          Padding(
+            padding: const EdgeInsets.all(24),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-      children: [
+              children: const [
                 Text(
                   'Student Management System',
                   style: TextStyle(
@@ -296,7 +202,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
               ],
             ),
           ),
-              )        ],
+        ],
       ),
     );
   }
