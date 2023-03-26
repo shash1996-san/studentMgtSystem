@@ -1,7 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/home.dart';
-import 'package:flutter_application_1/screens/teacherScreen.dart';
 import 'package:flutter_application_1/screens/moduleHome.dart';
+import 'package:flutter_application_1/screens/teacherScreen.dart';
 
 class MainHomeScreen extends StatefulWidget {
   const MainHomeScreen({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('Main Home'),
         bottom: TabBar(
           controller: _tabController,
           tabs: const [
